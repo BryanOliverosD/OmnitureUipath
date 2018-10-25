@@ -1,0 +1,780 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="ViaFTP"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:p="http://schemas.uipath.com/workflow/activities/ftp"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ArchivoSeguimiento" Type="InArgument(x:String)" />
+    <x:Property Name="ArchivoConfiguracion" Type="InArgument(x:String)" />
+    <x:Property Name="NombreArchivo" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ViaFTP_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ViaFTP" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="TablaConfig" />
+      <Variable x:TypeArguments="x:String" Name="NombreArchivo" />
+      <Variable x:TypeArguments="x:String" Name="ColCodigo" />
+      <Variable x:TypeArguments="x:String" Name="ArchivoUltimaCelda" />
+      <Variable x:TypeArguments="x:String" Name="RutaOrigen" />
+      <Variable x:TypeArguments="x:String" Name="UltimaCelda" />
+      <Variable x:TypeArguments="x:String" Name="NombreHoja" />
+      <Variable x:TypeArguments="x:Int32" Name="Contador" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="CampoComparar" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="AuxCompara" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Tabla" />
+      <Variable x:TypeArguments="x:String" Name="TEXTO" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Item1" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Item2" />
+      <Variable x:TypeArguments="x:Int32" Name="Contador1" />
+      <Variable x:TypeArguments="x:Int32" Name="Contador2" />
+      <Variable x:TypeArguments="x:String" Name="RegistrosHistoricos" />
+      <Variable x:TypeArguments="x:Int32" Name="CeldaInicial" />
+      <Variable x:TypeArguments="sd:DataTable" Name="TablaAux" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="Repetidas" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="Contador3" />
+      <Variable x:TypeArguments="sd:DataTable" Name="TablaNueva" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="NumColumna" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="TextoValidar" />
+      <Variable x:TypeArguments="sd:DataTable" Name="NuevaTabla" />
+      <Variable x:TypeArguments="x:String" Name="ExpresionRegular" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Ubicacion" />
+      <Variable x:TypeArguments="x:Boolean" Name="Validacion" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Zona" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Campaña" />
+      <Variable x:TypeArguments="x:String" Name="TempFecha" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="RutaPlantillasTAB" />
+      <Variable x:TypeArguments="x:String" Default="ArchivosTAB\" Name="ArchivoTAB" />
+      <Variable x:TypeArguments="x:String" Name="NombreArchivoTAB" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="login" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="url" />
+      <Variable x:TypeArguments="s:String[]" Name="Link" />
+      <Variable x:TypeArguments="x:String" Name="ssSession" />
+      <Variable x:TypeArguments="x:String" Name="UsuarioOnmiture" />
+      <Variable x:TypeArguments="x:String" Name="PasswordOmniture" />
+      <Variable x:TypeArguments="x:String" Name="Suite" />
+      <Variable x:TypeArguments="x:String" Name="Clasificacion" />
+      <Variable x:TypeArguments="x:String" Name="SitioWebOmniture" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="FlujoCompleto" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="Existe" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Resultado" />
+      <Variable x:TypeArguments="x:String" Name="UtilizaFTP" />
+      <Variable x:TypeArguments="x:String" Name="RutaFTP" />
+      <Variable x:TypeArguments="x:String" Name="UsuarioFTP" />
+      <Variable x:TypeArguments="x:String" Name="PasswordFTP" />
+      <Variable x:TypeArguments="x:Boolean" Name="ExisteFTP" />
+      <Variable x:TypeArguments="x:Boolean" Name="ResultFTP" />
+      <Variable x:TypeArguments="x:String" Default="SC_EXPORT_flblanewtestfcl_" Name="PrefijoArchivoSalida" />
+      <Variable x:TypeArguments="x:String" Default="SC_EXPORT_flblaprodfcl_" Name="PrefijoArchivoSalida2" />
+      <Variable x:TypeArguments="x:Boolean" Name="ResultFTP2" />
+    </Sequence.Variables>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_29">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[PrefijoArchivoSalida]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["SC_EXPORT_flblanewtestfcl_"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[PrefijoArchivoSalida2]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">SC_EXPORT_flblaprodfcl_</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[String.IsNullOrEmpty(ArchivoSeguimiento)]" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[ArchivoSeguimiento]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">Seguimiento\SeguimientoFTP.txt</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+    </If>
+    <If Condition="[String.IsNullOrEmpty(ArchivoConfiguracion)]" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[ArchivoConfiguracion]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">["\Configuracion\ConfiguracionSearchBosch.csv"]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+    </If>
+    <Sequence DisplayName="Lectura Configuracion" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[TablaConfig]" Delimitator="Pipe" DisplayName="Read CSV" FilePath="[String.Concat(Directory.GetCurrentDirectory.ToString,ArchivoConfiguracion)]" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" IncludeColumnNames="False" />
+      <ui:ForEachRow DataTable="[TablaConfig]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[NombreArchivo]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(0).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[ColCodigo]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[ArchivoUltimaCelda]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(2).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[RutaOrigen]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[String.Concat(row(3).ToString,"\Entrada")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[NombreHoja]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(4).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[RegistrosHistoricos]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(5).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="ui:GenericValue">[RutaPlantillasTAB]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="ui:GenericValue">[row(6).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[SitioWebOmniture]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(7).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[UsuarioOnmiture]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(8).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[PasswordOmniture]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(9).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[Suite]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(10).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[Clasificacion]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(11).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[UtilizaFTP]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(12).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[RutaFTP]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(13).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[UsuarioFTP]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(14).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[PasswordFTP]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(15).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[NombreArchivoTAB]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[row(16).ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+      </ui:ForEachRow>
+      <ui:ReadTextFile Content="[UltimaCelda]" DisplayName="Read text file" FileName="[ArchivoUltimaCelda]" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    </Sequence>
+    <p:WithFtpSession ClientCertificatePassword="{x:Null}" ClientCertificatePath="{x:Null}" Port="{x:Null}" ContinueOnError="False" DisplayName="With ftp session" Host="[RutaFTP]" sap2010:WorkflowViewState.IdRef="WithFtpSession_1" Password="[PasswordFTP]" Username="[UsuarioFTP]">
+      <p:WithFtpSession.Body>
+        <ActivityAction x:TypeArguments="p:IFtpSession">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="p:IFtpSession" Name="FtpSession" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <p:FileExists ContinueOnError="False" DisplayName="File exists" Exists="[ExisteFTP]" sap2010:WorkflowViewState.IdRef="FileExists_3" RemotePath="[String.Concat(&quot;SC_EXPORT_flblanewtestfcl_&quot;,NombreArchivoTAB)]" />
+            <If Condition="[ExisteFTP]" sap2010:WorkflowViewState.IdRef="If_4">
+              <If.Then>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_30">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Se borra Archivo de Salida existente")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_6" Text="[TEXTO]" />
+                  </Sequence>
+                  <p:Delete ContinueOnError="False" sap2010:WorkflowViewState.IdRef="Delete_1" RemotePath="[String.Concat(&quot;SC_EXPORT_flblanewtestfcl_&quot;,NombreArchivoTAB)]" />
+                </Sequence>
+              </If.Then>
+            </If>
+            <p:FileExists ContinueOnError="False" DisplayName="File exists" Exists="[ExisteFTP]" sap2010:WorkflowViewState.IdRef="FileExists_4" RemotePath="[String.Concat(&quot;SC_EXPORT_flblaprodfcl_&quot;,NombreArchivoTAB)]" />
+            <If Condition="[ExisteFTP]" sap2010:WorkflowViewState.IdRef="If_6">
+              <If.Then>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_35">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Se borra Archivo de Salida existente")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_10" Text="[TEXTO]" />
+                  </Sequence>
+                  <p:Delete ContinueOnError="False" sap2010:WorkflowViewState.IdRef="Delete_2" RemotePath="[String.Concat(&quot;SC_EXPORT_flblaprodfcl_&quot;,NombreArchivoTAB)]" />
+                </Sequence>
+              </If.Then>
+            </If>
+            <p:UploadFiles ContinueOnError="False" Create="False" DisplayName="Upload files" sap2010:WorkflowViewState.IdRef="UploadFiles_3" LocalPath="[String.Concat(Directory.GetCurrentDirectory,&quot;\&quot;,ArchivoTAB,NombreArchivoTAB)]" Overwrite="True" Recursive="False" RemotePath="\" />
+            <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_16">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Se sube archivo TAB")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_7" Text="[TEXTO]" />
+            </Sequence>
+            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[String.Concat(Directory.GetCurrentDirectory,&quot;\&quot;,ArchivoTAB,NombreArchivoTAB.Replace(&quot;tab&quot;,&quot;fin&quot;))]" DisplayName="Copy file" sap2010:WorkflowViewState.IdRef="CopyFile_2" Overwrite="True" Path="[String.Concat(Directory.GetCurrentDirectory,&quot;\&quot;,ArchivoTAB,NombreArchivoTAB)]" />
+            <p:UploadFiles ContinueOnError="False" Create="False" DisplayName="Upload files" sap2010:WorkflowViewState.IdRef="UploadFiles_4" LocalPath="[String.Concat(Directory.GetCurrentDirectory,&quot;\&quot;,ArchivoTAB,NombreArchivoTAB.Replace(&quot;tab&quot;,&quot;fin&quot;))]" Overwrite="True" Recursive="False" RemotePath="\" />
+            <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Se sube archivo FIN")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_8" Text="[TEXTO]" />
+            </Sequence>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[Contador]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">0</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Se espera Resultado de Subida")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_9" Text="[TEXTO]" />
+            </Sequence>
+            <DoWhile DisplayName="Do while" sap2010:WorkflowViewState.IdRef="DoWhile_2" Condition="[(ResultFTP=False or ResultFTP2=False) and Contador&lt;300]">
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <p:FileExists ContinueOnError="False" DisplayName="File exists" Exists="[ResultFTP]" sap2010:WorkflowViewState.IdRef="FileExists_2" RemotePath="[String.Concat(PrefijoArchivoSalida,NombreArchivoTAB)]" />
+                <p:FileExists ContinueOnError="False" DisplayName="File exists" Exists="[ResultFTP2]" sap2010:WorkflowViewState.IdRef="FileExists_5" RemotePath="[String.Concat(PrefijoArchivoSalida2,NombreArchivoTAB)]" />
+                <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_26">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[Contador]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[Contador+1]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </DoWhile>
+          </Sequence>
+        </ActivityAction>
+      </p:WithFtpSession.Body>
+    </p:WithFtpSession>
+    <If Condition="[ResultFTP]" sap2010:WorkflowViewState.IdRef="If_5">
+      <If.Then>
+        <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_27">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Archivo Actualizado, Intento: ",Contador)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_4" Text="[TEXTO]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <Sequence DisplayName="Inicia Seguimiento" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_28">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[TEXTO]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[String.Concat(DateAndTime.Now.ToString,", ","Archivo No Actualizado, Intento: ",Contador)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:AppendLine DisplayName="Append line" Encoding="us-ascii" FileName="[ArchivoSeguimiento]" sap2010:WorkflowViewState.IdRef="AppendLine_5" Text="[TEXTO]" />
+          </Sequence>
+          <If Condition="[File.Exists(String.Concat(&quot;Y:\root\Omniture\Salida\&quot;,NombreArchivo))]" sap2010:WorkflowViewState.IdRef="If_7">
+            <If.Then>
+              <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_3" Path="[String.Concat(&quot;Y:\root\Omniture\Salida\&quot;,NombreArchivo)]" />
+            </If.Then>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="500,60" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="500,60" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="500,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="500,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ReadCsvFile_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ReadTextFile_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="500,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FileExists_3" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Assign_30" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_6" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delete_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FileExists_4" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Assign_35" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_10" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_19" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delete_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="222,237">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UploadFiles_3" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_7" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CopyFile_2" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="UploadFiles_4" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_8" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_9" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="464,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FileExists_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="FileExists_5" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Delay_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="264,370">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DoWhile_2" sap:VirtualizedContainerService.HintSize="464,531">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="486,1520">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WithFtpSession_1" sap:VirtualizedContainerService.HintSize="500,1646">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_4" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_28" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AppendLine_5" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delete_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="222,266">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="500,414">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="522,2697">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViaFTP_1" sap:VirtualizedContainerService.HintSize="562,2414">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

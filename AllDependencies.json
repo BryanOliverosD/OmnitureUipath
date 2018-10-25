@@ -1,0 +1,542 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.5.2": {
+      "AvalonEdit/4.4.2.9744": {
+        "type": "package",
+        "compile": {
+          "lib/Net40/_._": {}
+        },
+        "runtime": {
+          "lib/Net40/ICSharpCode.AvalonEdit.dll": {}
+        }
+      },
+      "BouncyCastle/1.8.1": {
+        "type": "package",
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "ClosedXML/0.87.1": {
+        "type": "package",
+        "dependencies": {
+          "DocumentFormat.OpenXml": "2.5.0"
+        },
+        "compile": {
+          "lib/net40/_._": {}
+        },
+        "runtime": {
+          "lib/net40/ClosedXML.dll": {}
+        }
+      },
+      "CsvHelper/2.13.5": {
+        "type": "package",
+        "compile": {
+          "lib/net40-client/_._": {}
+        },
+        "runtime": {
+          "lib/net40-client/CsvHelper.dll": {}
+        }
+      },
+      "DocumentFormat.OpenXml/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/DocumentFormat.OpenXml.dll": {}
+        }
+      },
+      "EPPlus/4.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net20/_._": {}
+        },
+        "runtime": {
+          "lib/net20/EPPlus.dll": {}
+        }
+      },
+      "FluentFTP/19.1.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Drawing",
+          "System.IO.Compression.FileSystem",
+          "System.Numerics",
+          "System.Runtime.Serialization",
+          "System.Web",
+          "System.Xml",
+          "System.Xml.Linq"
+        ],
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/FluentFTP.dll": {}
+        }
+      },
+      "Microsoft.Exchange.WebServices/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/40/_._": {}
+        },
+        "runtime": {
+          "lib/40/Microsoft.Exchange.WebServices.Auth.dll": {},
+          "lib/40/Microsoft.Exchange.WebServices.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NPOI/2.2.1": {
+        "type": "package",
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "compile": {
+          "lib/net40/_._": {}
+        },
+        "runtime": {
+          "lib/net40/NPOI.OOXML.dll": {},
+          "lib/net40/NPOI.OpenXml4Net.dll": {},
+          "lib/net40/NPOI.OpenXmlFormats.dll": {},
+          "lib/net40/NPOI.dll": {}
+        }
+      },
+      "RestSharp/105.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net4/_._": {}
+        },
+        "runtime": {
+          "lib/net4/RestSharp.dll": {}
+        }
+      },
+      "SharpZipLib/0.86.0": {
+        "type": "package",
+        "compile": {
+          "lib/20/_._": {}
+        },
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        }
+      },
+      "SSH.NET/2016.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/_._": {}
+        },
+        "runtime": {
+          "lib/net40/Renci.SshNet.dll": {}
+        }
+      },
+      "UiPath.Excel.Activities/2.3.6682.26635": {
+        "type": "package",
+        "dependencies": {
+          "ClosedXML": "0.87.1",
+          "CsvHelper": "2.13.5",
+          "DocumentFormat.OpenXml": "2.5.0",
+          "EPPlus": "4.0.4",
+          "NPOI": "2.2.1"
+        },
+        "compile": {
+          "lib/net452/_._": {}
+        },
+        "runtime": {
+          "lib/net452/UiPath.Excel.Activities.Design.dll": {},
+          "lib/net452/UiPath.Excel.Activities.dll": {},
+          "lib/net452/UiPath.Excel.dll": {}
+        }
+      },
+      "UiPath.FTP.Activities/1.0.6710.16240": {
+        "type": "package",
+        "dependencies": {
+          "FluentFTP": "19.1.2",
+          "SSH.NET": "2016.1.0"
+        },
+        "compile": {
+          "lib/net452/_._": {}
+        },
+        "runtime": {
+          "lib/net452/UiPath.FTP.Activities.Design.dll": {},
+          "lib/net452/UiPath.FTP.Activities.dll": {},
+          "lib/net452/UiPath.FTP.dll": {}
+        }
+      },
+      "UiPath.Mail.Activities/1.1.6562.21018": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.1",
+          "Microsoft.Exchange.WebServices": "2.2.0"
+        },
+        "compile": {
+          "lib/net40/_._": {}
+        },
+        "runtime": {
+          "lib/net40/MailKit.dll": {},
+          "lib/net40/MimeKit.dll": {},
+          "lib/net40/UiPath.Mail.Activities.Design.dll": {},
+          "lib/net40/UiPath.Mail.Activities.dll": {},
+          "lib/net40/UiPath.Mail.dll": {}
+        }
+      },
+      "UiPath.WebAPI.Activities/1.1.6479.13209": {
+        "type": "package",
+        "dependencies": {
+          "AvalonEdit": "4.4.2.9744",
+          "Newtonsoft.Json": "8.0.3",
+          "RestSharp": "105.0.1"
+        },
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/UiPath.Web.Activities.Design.dll": {},
+          "lib/net45/UiPath.Web.Activities.dll": {},
+          "lib/net45/UiPath.Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AvalonEdit/4.4.2.9744": {
+      "sha512": "MQqEPPNWakZgBh5o5TD8mMKDzjrnGdVQ4grypO4jjEyecswri4LmegzsUc1g++jPC1i6C0+/psYr2WVBFBiwkw==",
+      "type": "package",
+      "path": "avalonedit/4.4.2.9744",
+      "files": [
+        "avalonedit.4.4.2.9744.nupkg.sha512",
+        "avalonedit.nuspec",
+        "lib/Net35/ICSharpCode.AvalonEdit.dll",
+        "lib/Net35/ICSharpCode.AvalonEdit.xml",
+        "lib/Net40/ICSharpCode.AvalonEdit.dll",
+        "lib/Net40/ICSharpCode.AvalonEdit.xml"
+      ]
+    },
+    "BouncyCastle/1.8.1": {
+      "sha512": "nH+P67LavO5EcxjKdBxFfRdfdFhivS3Xp3+0br1KcpCI8DM6ksCWy6YYZjk7XFV+VsHGtkUovwIZ/vmCp42geA==",
+      "type": "package",
+      "path": "bouncycastle/1.8.1",
+      "files": [
+        "Readme.txt",
+        "bouncycastle.1.8.1.nupkg.sha512",
+        "bouncycastle.nuspec",
+        "lib/BouncyCastle.Crypto.dll"
+      ]
+    },
+    "ClosedXML/0.87.1": {
+      "sha512": "2LC0T8bu2G2kt34C4Ig87uZfrRO4MwMVI54e2To7m3DvwAs2Z2Ir86WQuUoW8Txo1uNGSfmu3DpfpQhSX0bIww==",
+      "type": "package",
+      "path": "closedxml/0.87.1",
+      "files": [
+        "closedxml.0.87.1.nupkg.sha512",
+        "closedxml.nuspec",
+        "lib/net35/ClosedXML.dll",
+        "lib/net35/ClosedXML.pdb",
+        "lib/net35/ClosedXML.xml",
+        "lib/net40/ClosedXML.dll",
+        "lib/net40/ClosedXML.pdb",
+        "lib/net40/ClosedXML.xml"
+      ]
+    },
+    "CsvHelper/2.13.5": {
+      "sha512": "fC8DPi/YTcZ8uXFiAeuT9EpsR2TE5cSJ2jg/4tht/Oen6az/djebpYoCQEtI33RfNrSZ533SedOknlWtUTX3fw==",
+      "type": "package",
+      "path": "csvhelper/2.13.5",
+      "files": [
+        "csvhelper.2.13.5.nupkg.sha512",
+        "csvhelper.nuspec",
+        "lib/net20/CsvHelper.dll",
+        "lib/net20/CsvHelper.pdb",
+        "lib/net20/CsvHelper.xml",
+        "lib/net35-client/CsvHelper.dll",
+        "lib/net35-client/CsvHelper.pdb",
+        "lib/net35-client/CsvHelper.xml",
+        "lib/net40-client/CsvHelper.dll",
+        "lib/net40-client/CsvHelper.pdb",
+        "lib/net40-client/CsvHelper.xml",
+        "lib/portable-net40+sl5+win8+wpa+wp8/CsvHelper.dll",
+        "lib/portable-net40+sl5+win8+wpa+wp8/CsvHelper.pdb",
+        "lib/portable-net40+sl5+win8+wpa+wp8/CsvHelper.xml"
+      ]
+    },
+    "DocumentFormat.OpenXml/2.5.0": {
+      "sha512": "H5jnox0hcLwzAjrpNqDPIItjh7dplF1kk1z8LatpI2h75wBgps1MepEttJFKs7xedQReCMHA0tGpNI0H2B+Mrg==",
+      "type": "package",
+      "path": "documentformat.openxml/2.5.0",
+      "files": [
+        "documentformat.openxml.2.5.0.nupkg.sha512",
+        "documentformat.openxml.nuspec",
+        "lib/DocumentFormat.OpenXml.dll"
+      ]
+    },
+    "EPPlus/4.0.4": {
+      "sha512": "O8LP3wUpJZ9Th0BBAKHbR0hdlnWZw4HEeDtNGTs1cvqGsdywC/L5kBxliJRStKV4K8eMZUjFE5Mov/LU01+OZg==",
+      "type": "package",
+      "path": "epplus/4.0.4",
+      "files": [
+        "epplus.4.0.4.nupkg.sha512",
+        "epplus.nuspec",
+        "lib/net20/EPPlus.XML",
+        "lib/net20/EPPlus.dll",
+        "lib/readme.txt"
+      ]
+    },
+    "FluentFTP/19.1.2": {
+      "sha512": "0xvKcao/sUbZQgD2PhXHejl9msxUzuU7cSpczDb2MnI1cUwp1ViS8FjkPjPE9C6UucLgII4nIpq8VYEvNyjgoQ==",
+      "type": "package",
+      "path": "fluentftp/19.1.2",
+      "files": [
+        "fluentftp.19.1.2.nupkg.sha512",
+        "fluentftp.nuspec",
+        "lib/net20/FluentFTP.dll",
+        "lib/net20/FluentFTP.xml",
+        "lib/net35/FluentFTP.dll",
+        "lib/net35/FluentFTP.xml",
+        "lib/net40/FluentFTP.dll",
+        "lib/net40/FluentFTP.xml",
+        "lib/net45/FluentFTP.dll",
+        "lib/net45/FluentFTP.xml",
+        "lib/netstandard1.4/FluentFTP.dll",
+        "lib/netstandard1.4/FluentFTP.xml",
+        "lib/netstandard1.6/FluentFTP.dll",
+        "lib/netstandard1.6/FluentFTP.xml"
+      ]
+    },
+    "Microsoft.Exchange.WebServices/2.2.0": {
+      "sha512": "NlkaTD0uWtg9VbiWq0VDWMBPzHFknH3tmstrxt0acrT09LBGqATTjRpsGOODz6tUdX7/dehBinxsf75U5Uw/+A==",
+      "type": "package",
+      "path": "microsoft.exchange.webservices/2.2.0",
+      "files": [
+        "doc/License Terms.rtf",
+        "doc/README.htm",
+        "doc/Redist.txt",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.dll",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.pdb",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.xml",
+        "lib/40/Microsoft.Exchange.WebServices.dll",
+        "lib/40/Microsoft.Exchange.WebServices.pdb",
+        "lib/40/Microsoft.Exchange.WebServices.xml",
+        "microsoft.exchange.webservices.2.2.0.nupkg.sha512",
+        "microsoft.exchange.webservices.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/8.0.3": {
+      "sha512": "KGsYQdS2zLH+H8x2cZaSI7e+YZ4SFIbyy1YJQYl6GYBWjf5o4H1A68nxyq+WTyVSOJQ4GqS/DiPE+UseUizgMg==",
+      "type": "package",
+      "path": "newtonsoft.json/8.0.3",
+      "files": [
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "newtonsoft.json.8.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "tools/install.ps1"
+      ]
+    },
+    "NPOI/2.2.1": {
+      "sha512": "esdT/yuODxuYCmqcbQ+6DDpAmPbVcJylgpA4leQZOfUcESbD8vYXEDtCTg4AKlWJIPHcbDnxlAtQxMEVw621Mw==",
+      "type": "package",
+      "path": "npoi/2.2.1",
+      "files": [
+        "LICENSE",
+        "Read Me.txt",
+        "Release Notes.txt",
+        "lib/net20/NPOI.OOXML.dll",
+        "lib/net20/NPOI.OpenXml4Net.dll",
+        "lib/net20/NPOI.OpenXmlFormats.dll",
+        "lib/net20/NPOI.XML",
+        "lib/net20/NPOI.dll",
+        "lib/net40/NPOI.OOXML.dll",
+        "lib/net40/NPOI.OpenXml4Net.dll",
+        "lib/net40/NPOI.OpenXmlFormats.dll",
+        "lib/net40/NPOI.XML",
+        "lib/net40/NPOI.dll",
+        "logo/120_120.jpg",
+        "logo/240_240.png",
+        "logo/32_32.jpg",
+        "logo/60_60.jpg",
+        "npoi.2.2.1.nupkg.sha512",
+        "npoi.nuspec"
+      ]
+    },
+    "RestSharp/105.0.1": {
+      "sha512": "2jEivNmSZFsK/iyoOu0l9+pEM2hXLQCvOQdLgQcr92cdnirl2xm+Wddy7lP6JTwZSLjAQ1ogHlal1tLu5hfZPw==",
+      "type": "package",
+      "path": "restsharp/105.0.1",
+      "files": [
+        "lib/net35-client/RestSharp.dll",
+        "lib/net35-client/RestSharp.xml",
+        "lib/net35/RestSharp.dll",
+        "lib/net35/RestSharp.xml",
+        "lib/net4-client/RestSharp.dll",
+        "lib/net4-client/RestSharp.xml",
+        "lib/net4/RestSharp.dll",
+        "lib/net4/RestSharp.xml",
+        "lib/sl4-wp71/RestSharp.WindowsPhone.dll",
+        "lib/sl4-wp71/RestSharp.WindowsPhone.xml",
+        "lib/sl4/RestSharp.Silverlight.dll",
+        "lib/sl4/RestSharp.Silverlight.xml",
+        "readme.txt",
+        "restsharp.105.0.1.nupkg.sha512",
+        "restsharp.nuspec"
+      ]
+    },
+    "SharpZipLib/0.86.0": {
+      "sha512": "5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "type": "package",
+      "path": "sharpziplib/0.86.0",
+      "files": [
+        "lib/11/ICSharpCode.SharpZipLib.dll",
+        "lib/20/ICSharpCode.SharpZipLib.dll",
+        "lib/SL3/SharpZipLib.Silverlight3.dll",
+        "lib/SL4/SharpZipLib.Silverlight4.dll",
+        "sharpziplib.0.86.0.nupkg.sha512",
+        "sharpziplib.nuspec"
+      ]
+    },
+    "SSH.NET/2016.1.0": {
+      "sha512": "b0fcFFOE044KNRhq1uGujmK04ab+OzA9xARdeVCoZrY6I4D1IIaR6dn6qBIa+er4bJapGBhznDitwcRQpSRC0w==",
+      "type": "package",
+      "path": "ssh.net/2016.1.0",
+      "files": [
+        "lib/net35/Renci.SshNet.dll",
+        "lib/net35/Renci.SshNet.xml",
+        "lib/net40/Renci.SshNet.dll",
+        "lib/net40/Renci.SshNet.xml",
+        "lib/netstandard1.3/Renci.SshNet.dll",
+        "lib/netstandard1.3/Renci.SshNet.xml",
+        "lib/sl4/Renci.SshNet.dll",
+        "lib/sl4/Renci.SshNet.xml",
+        "lib/sl5/Renci.SshNet.dll",
+        "lib/sl5/Renci.SshNet.xml",
+        "lib/uap10/Renci.SshNet.dll",
+        "lib/uap10/Renci.SshNet.xml",
+        "lib/wp71/Renci.SshNet.dll",
+        "lib/wp71/Renci.SshNet.xml",
+        "lib/wp8/Renci.SshNet.dll",
+        "lib/wp8/Renci.SshNet.xml",
+        "ssh.net.2016.1.0.nupkg.sha512",
+        "ssh.net.nuspec"
+      ]
+    },
+    "UiPath.Excel.Activities/2.3.6682.26635": {
+      "sha512": "sJtaUUY0whaTssglZYU/ZHIKOhfdHTRju5vvbcV6OVGaJM3pg2XyPhXMb+pIzKPzUF+dxk5+73LTSaj95BN9lQ==",
+      "type": "package",
+      "path": "uipath.excel.activities/2.3.6682.26635",
+      "files": [
+        "lib/net452/UiPath.Excel.Activities.Design.dll",
+        "lib/net452/UiPath.Excel.Activities.dll",
+        "lib/net452/UiPath.Excel.dll",
+        "uipath.excel.activities.2.3.6682.26635.nupkg.sha512",
+        "uipath.excel.activities.nuspec"
+      ]
+    },
+    "UiPath.FTP.Activities/1.0.6710.16240": {
+      "sha512": "9YOyYwzhn924n7fAh+1eNq6wvry4rOLr4qowcww/6WsXhdUJHNYeBpPnfejmg8bKTGPuzS8swHKSjLcZWQnTaA==",
+      "type": "package",
+      "path": "uipath.ftp.activities/1.0.6710.16240",
+      "files": [
+        "lib/net452/UiPath.FTP.Activities.Design.dll",
+        "lib/net452/UiPath.FTP.Activities.dll",
+        "lib/net452/UiPath.FTP.dll",
+        "uipath.ftp.activities.1.0.6710.16240.nupkg.sha512",
+        "uipath.ftp.activities.nuspec"
+      ]
+    },
+    "UiPath.Mail.Activities/1.1.6562.21018": {
+      "sha512": "6UJhdqbZuza2HafFXxhNImsQB/sYAOs88L3ChTG/qgtN1ZHjw8On7DH6wwUmYUeNxGydu1JoRyM4F8/5IVPMyQ==",
+      "type": "package",
+      "path": "uipath.mail.activities/1.1.6562.21018",
+      "files": [
+        "lib/net40/MailKit.dll",
+        "lib/net40/MailKit.xml",
+        "lib/net40/MimeKit.dll",
+        "lib/net40/MimeKit.xml",
+        "lib/net40/UiPath.Mail.Activities.Design.dll",
+        "lib/net40/UiPath.Mail.Activities.dll",
+        "lib/net40/UiPath.Mail.dll",
+        "uipath.mail.activities.1.1.6562.21018.nupkg.sha512",
+        "uipath.mail.activities.nuspec"
+      ]
+    },
+    "UiPath.WebAPI.Activities/1.1.6479.13209": {
+      "sha512": "BCku8iHL2Dd5VyTTMjVGTcoiHu9AMo3fueLtCRCl0td78hZvz3Jk8V11cgqcdOW5SUv6jR2l9soAmU8QJEy6Zg==",
+      "type": "package",
+      "path": "uipath.webapi.activities/1.1.6479.13209",
+      "files": [
+        "lib/net45/UiPath.Web.Activities.Design.dll",
+        "lib/net45/UiPath.Web.Activities.dll",
+        "lib/net45/UiPath.Web.dll",
+        "uipath.webapi.activities.1.1.6479.13209.nupkg.sha512",
+        "uipath.webapi.activities.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETFramework,Version=v4.5.2": [
+      "UiPath.Excel.Activities >= 2.3.6682.26635",
+      "UiPath.FTP.Activities >= 1.0.6710.16240",
+      "UiPath.Mail.Activities >= 1.1.6562.21018",
+      "UiPath.WebAPI.Activities >= 1.1.6479.13209"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\jcarrillo\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "restore": {
+      "projectUniqueName": "Omniture",
+      "projectName": "Omniture",
+      "projectPath": "C:\\Users\\jcarrillo\\Desktop\\Omniture",
+      "packagesPath": "C:\\Users\\jcarrillo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jcarrillo\\Desktop\\Omniture"
+    },
+    "frameworks": {
+      "net452": {
+        "dependencies": {
+          "UiPath.Excel.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[2.3.6682.26635, )"
+          },
+          "UiPath.FTP.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[1.0.6710.16240, )"
+          },
+          "UiPath.Mail.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[1.1.6562.21018, )"
+          },
+          "UiPath.WebAPI.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[1.1.6479.13209, )"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Omniture",
+  "description": "Project",
+  "main": "BannersInterno.xaml",
+  "dependencies": {
+    "UiPath.Core.Activities": "18.2.6745.15248",
+    "UiPath.Excel.Activities": "2.3.6682.26635",
+    "UiPath.FTP.Activities": "1.0.6710.16240",
+    "UiPath.Mail.Activities": "1.1.6562.21018",
+    "UiPath.WebAPI.Activities": "1.1.6479.13209"
+  },
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "toolVersion": "18.2",
+  "projectVersion": "1.0.6841.23381",
+  "packOptions": {},
+  "runtimeOptions": {}
+}

@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\AzCopy.exe" /Source:https://node3storage.file.core.windows.net/brief-files/root/Omniture/Entrada /Dest:"C:\Users\jcarrillo\Desktop\Omniture\Entrada" /SourceKey:"eN4wZTOidD3ID/8z3XVP7SX7HgQv14gBZu5bDorvWi7JP7v4VJzkUjKodKGRPYrEfmYDJ8jxzN719vDMPpL+Ww==" /S /Y

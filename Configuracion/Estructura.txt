@@ -1,0 +1,13 @@
+Nombre Archivo|
+Columna Codigo|
+Nombre Archivo Ultima Celda|
+Ruta Archivo Origen|
+Nombre Hoja|
+Registros Anteriores a Validar|
+Ruta Plantillas Archivos TAB|
+Sitio Web Omniture|
+Usuario Omniture|
+Password Omniture|
+Report Suite|
+Data Set to be classified|
+Largo Minimo para Codigo|
